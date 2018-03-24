@@ -1,0 +1,39 @@
+#!/usr/bin/python
+
+from time import sleep
+from os import system
+from sys import exit
+
+while True:
+    print "\n(1) Kali Linux x32/x64\n(2) Ubuntu / Parrot OS\n(3) Mac OS X / Darwin\n(0) Uninstall\n"
+    getos = raw_input(">> ")
+    if getos == "1":
+        system("sudo apt-get update")
+        system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-setuptools")
+        system("sudo apt-get install python-selenium")
+        system("sudo apt-get install firefoxdriver")
+        system("sudo pip install -r requirements.txt")
+        break
+    elif getos == "2":
+        system("sudo add-apt-repository universe")
+        system("sudo apt-get update")
+        system("sudo apt-get install build-essential libssl-dev libffi-dev python-dev python-setuptools")
+        system("sudo apt-get install python-pip") # result of universe repo
+        system("sudo pip install -r requirements.txt")
+        system("sudo pip install -U selenium")
+        system("wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux32.tar.gz && tar -xvf geckodriver-v0.18.0-linux32.tar.gz && rm -r geckodriver-v0.18.0-linux32.tar.gz && mv geckodriver /usr/bin")
+        break
+    elif getos == "3":
+        system("""/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)" """)
+        system("brew install Caskroom/cask/firefox")
+        system("sudo easy_install pip")
+        system("sudo easy_install selenium")
+        system("brew install libffi")
+        system("sudo pip install -r requirements.txt")
+        system("wget https://github.com/mozilla/geckodriver/releases/download/v0.18.0/geckodriver-v0.18.0-linux32.tar.gz && tar -xvf geckodriver-v0.18.0-linux32.tar.gz && rm -r geckodriver-v0.18.0-linux32.tar.gz && mv geckodriver /usr/bin")
+        break
+    else:
+        continue
+
+print "\nDone!"
+exit(0)
